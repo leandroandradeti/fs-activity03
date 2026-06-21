@@ -1,0 +1,45 @@
+### Health
+GET http://localhost:4190/health
+
+### Register
+POST http://localhost:4190/auth/register
+content-type: application/json
+
+{
+  "name": "Organizador 1",
+  "email": "org1@test.com",
+  "password": "1234",
+  "role": "ORGANIZADOR"
+}
+
+### Login
+POST http://localhost:4190/auth/login
+content-type: application/json
+
+{
+  "email": "org1@test.com",
+  "password": "1234"
+}
+
+### Me
+GET http://localhost:4190/auth/me
+Authorization: Bearer {{token}}
+
+### List events public
+GET http://localhost:4190/events
+
+### Organizer create event
+POST http://localhost:4190/organizer/events
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+  "title": "Evento Teste",
+  "description": "Descricao",
+  "datetime": "2030-01-01T10:00:00Z",
+  "location": "Online",
+  "category": "Tech",
+  "capacity": 2,
+  "imageUrl": null
+}
+
