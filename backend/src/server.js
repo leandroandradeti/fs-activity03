@@ -10,9 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 
+app.get('/', (req, res) => res.json({ ok: true, service: 'events-api' }));
 app.get('/health', (req, res) => res.json({ ok: true }));
 app.use('/auth', authRoutes);
 app.use('/', eventsRoutes);
+
 
 app.use(errorHandler);
 
