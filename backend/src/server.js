@@ -18,7 +18,7 @@ app.use('/', eventsRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 4190;
+const PORT = process.env.PORT || 5190;
 bootstrap()
   .then(() => {
     app.listen(PORT, () => {
@@ -29,6 +29,3 @@ bootstrap()
     console.error('Failed to init backend', e);
     process.exit(1);
   });
-
-
-

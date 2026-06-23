@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 
 rem === Config ===
-set BACKEND_PORT=4190
-set FRONTEND_PORT=5390
+set BACKEND_PORT=5190
+set FRONTEND_PORT=5391
 
 rem === Util: kill process by TCP port (Windows) ===
 rem Requires: netstat (built-in) + taskkill

@@ -47,13 +47,13 @@ A UI permite cadastrar, mas abaixo vão usuários para testes (use o cadastro e 
 ### 1) Organizador
 
 - role: `ORGANIZADOR`
-- email: `org1@test.com`
+- email: `org@test.com`
 - senha: `1234`
 
 ### 2) Participante
 
 - role: `PARTICIPANTE`
-- email: `part1@test.com`
+- email: `part@test.com`
 - senha: `1234`
 
 > Observação: por padrão o backend valida role. Se esses usuários ainda não existirem no seu SQLite local, crie-os via tela de cadastro.
