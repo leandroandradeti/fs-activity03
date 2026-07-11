@@ -7,7 +7,7 @@
 
 ## Como iniciar (automático)
 
-O projeto roda **backend** na **4190** e **frontend** na **5390**.
+O projeto roda o backend na porta 5191 e o frontend na porta 5391.
 
 1) Abra um terminal na pasta do projeto e execute:
 
@@ -18,12 +18,76 @@ start.bat
 
 O `start.bat`:
 
-- encerra processos que estejam usando as portas 4190/5390 (se houver)
+- encerra processos que estejam usando as portas 5191/5391 (se houver)
 - inicia o backend e o frontend
 
-## Endpoints do backend
+## Estrutura do projeto
 
-Backend: <http://localhost:4190>
+### Visão geral da arquitetura
+
+```text
+Usuário / Navegador
+        │
+        ▼
+Frontend (React + Vite)
+        │
+        │ HTTP / JSON
+        ▼
+Backend (Express + Node.js)
+        │
+        │ SQLite
+        ▼
+backend/data/database.sqlite
+```
+
+### Pasta principal
+
+- `backend/`: aplicação Node.js + Express + SQLite
+- `frontend/`: aplicação React + Vite
+- `start.bat`: script para iniciar backend e frontend
+
+### Backend
+
+Localização principal:
+
+- `backend/src/server.js`: ponto de entrada do servidor Express
+- `backend/src/routes/`: rotas da API
+  - `auth.js`: login, cadastro e consulta do usuário autenticado
+  - `events.js`: catálogo público, eventos do organizador e inscrições
+- `backend/src/middleware/`: middlewares
+  - `auth.js`: autenticação via JWT
+  - `errorHandler.js`: tratamento de erros
+- `backend/src/bootstrap.js`: inicialização do banco e dados base
+- `backend/src/db.js`: conexão e acesso ao SQLite
+- `backend/data/database.sqlite`: arquivo do banco de dados SQLite
+- `backend/src/app.rest`: exemplos de requisições HTTP
+
+### Frontend
+
+Localização principal:
+
+- `frontend/src/App.jsx`: componente principal da aplicação
+- `frontend/src/main.jsx`: entrada do React
+- `frontend/src/components/`: telas e componentes visuais
+  - `Login.jsx`: tela de login/cadastro
+  - `OrganizerHome.jsx`: painel do organizador
+  - `ParticipantHome.jsx`: painel do participante
+- `frontend/src/components/organizer/`: telas específicas do organizador
+- `frontend/src/components/participant/`: telas específicas do participante
+- `frontend/src/lib/auth.js`: funções para salvar token e chamar a API
+- `frontend/src/styles.css`: estilos globais
+
+## Banco de dados
+
+O banco fica em:
+
+- `backend/data/database.sqlite`
+
+Ele é criado/atualizado automaticamente ao iniciar o backend via `bootstrap.js`.
+
+## Rotas do backend
+
+Backend: <http://localhost:5191>
 
 - `GET /health`
 - `POST /auth/register`
@@ -37,8 +101,6 @@ Backend: <http://localhost:4190>
 - `DELETE /events/:id/inscriptions`
 - `GET /me/inscriptions`
 - `GET /organizer/events/:id/inscriptions`
-
-O arquivo `backend/src/app.rest` tem exemplos prontos.
 
 ## Login de teste (rápido)
 
@@ -60,7 +122,7 @@ A UI permite cadastrar, mas abaixo vão usuários para testes (use o cadastro e 
 
 ## Fluxo básico no app
 
-1) Acesse o frontend: <http://localhost:5390>
+1) Acesse o frontend: <http://localhost:5391>
 2) Faça login como **Organizador**:
    - crie eventos (CRUD)
    - depois selecione um evento e veja a lista de inscritos
